@@ -1,0 +1,48 @@
+
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{bookTitle}}
+    </div>
+
+    <div class='panel-body'>
+        <div class='row'>
+            <div class='col-md-2'>Filter By</div>
+            <div class='col-md-4'>
+                <input type='text'/>
+            </div>
+        </div>
+
+        <div class='table-responsive' *ngIf= 'books && books.length'>
+            <table class='table'>
+                <thead>
+                   <tr>
+
+                       <th> Name Book </th>
+                       <th> Price </th>
+                       <th> Quantity </th>
+                       <th> Status </th>
+                       <th> Buy </th>
+                   </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let book of books">
+
+                    <td>{{book.nameBook}}</td>
+                    <td>{{book.price}}</td>
+                    <td>{{book.price}}</td>
+                    <td>{{book.status}}</td>
+                    <td></td>
+                </tr>
+
+                </tbody>
+
+
+            </table>
+
+
+
+        </div>
+
+    </div>
+
+</div>
