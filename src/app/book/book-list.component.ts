@@ -12,17 +12,6 @@ import { BookService } from './books.service';
 
 export class BookComponent implements OnInit{
 
-/*
-    constructor (private _bookService : BookService){
-
-    }
-    bookTitle : string = 'List of all available book ';
-
-    books : Book[];
-
-    ngOnInit() : void {
-      this._bookService.getBooks().subscribe(books=>this.books=books);
-    }*/
 
   books: Book[];
   selectedBook: Book;
@@ -36,8 +25,8 @@ export class BookComponent implements OnInit{
 
   getBooks(): void {
     this.bookService
-      .getBooks().then(books => this.books = books)
-      .catch(error => this.error = error);
+        .getBooks().then(books => this.books = books)
+        .catch(error => this.error = error);
   }
 
   addBook(): void {

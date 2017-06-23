@@ -26,7 +26,7 @@ import {InMemoryDataService} from "./in-memory-data.service";
     FormsModule,
     AppRoutingModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService, {delay: 600},)
+    InMemoryWebApiModule.forRoot(InMemoryDataService,{passThruUnknownUrl: true})
   ],
 
   declarations: [
