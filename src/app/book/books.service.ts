@@ -1,75 +1,74 @@
 import {Injectable} from "@angular/core";
 
-/* import { IBook } from './book' */
-
 import {Http,Response,Headers} from "@angular/http";
 
   import {Observable} from "rxjs";
 
 import { Book } from './book';
 
-/*  import 'rxjs/add/operator/map';  */
 
 import 'rxjs/add/operator/toPromise';
 
 
 
-/* import { Hero } from './hero'; */
-
-
 @Injectable()
 export class BookService {
 
-    /* private _bookUrl = 'http://localhost:8080/bookstore/admin/show-all-books';
+   /* private _bookUrl = 'http://localhost:8080/bookstore/admin/show-all-books';
 
-    constructor(private _http: Http){}
+     constructor(private _http: Http){}
 
-    getBooks() : Observable<IBook[]>{
+     getBooks() : Observable<IBook[]>{
         return this._http.get(this._bookUrl)
                .map((response:Response)=> <IBook[]>response.json());
     }
-    private handleError(error:Response){
 
-    }*/
+     private handleError(error:Response){
 
-  private booksUrl = 'http://localhost:8080/bookstore/admin/show-all-books';  // URL to web api
+    } */
+
+  private booksUrl = 'http://localhost:8080/bookstore';  // URL to web api
 
   constructor(private http: Http) { }
 
-  getBooks(): Promise<Array<Book>> {
-    return this.http
+  getBooks() : Observable<Book[]>{
+  /*  return this.http
       .get(this.booksUrl)
+      .map(response => response.json() as Book[])
       .toPromise()
-      .then((response) => {
-        return response.json().data as Book[];
-      })
       .catch(this.handleError);
+  */
+     return this.http
+     .get(this.booksUrl + "/admin/show-all-books")
+     //.map(response => response.json() as Book[])
+       .map((response:Response)=> response.json())
+    ;
   }
 
 
 
   getBook(id: number): Promise<Book> {
-    return this.getBooks()
+   /* return this.getBooks()
       .then(books => books.find(book => book.id === id));
+  */
+    return null;
   }
 
   save(book: Book): Promise<Book> {
-    if (book.id) {
-      return this.put(book);
+    if (book.idBook) {
+      return this.put(book)
     }
-    return this.post(book);
+    return this.post(book)
   }
 
-  delete(book: Book): Promise<Response> {
+  delete(book: Book): Observable<Response> {
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    // headers.append('Content-Type', 'application/json');
 
-    const url = `${this.booksUrl}/${book.id}`;
+    let url = `${this.booksUrl}/admin/book/delete/${book.idBook}`;
 
     return this.http
-      .delete(url, { headers: headers })
-      .toPromise()
-      .catch(this.handleError);
+      .delete(url)
   }
 
   // Add new Hero
@@ -90,7 +89,7 @@ export class BookService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    const url = `${this.booksUrl}/${book.id}`;
+    const url = `${this.booksUrl}/${book.idBook}`;
 
     return this.http
       .put(url, JSON.stringify(book), { headers: headers })

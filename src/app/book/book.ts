@@ -1,11 +1,9 @@
 
 export class Book {
 
-    id:number;
+    idBook:number;
     nameBook:string;
     price:number;
     quantity:number;
-
-
 
 }

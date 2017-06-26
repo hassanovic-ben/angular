@@ -3,6 +3,12 @@
   "project": {
     "name": "blank"
   },
+  "styles": [
+    "styles.css",
+    "../node_modules/primeng/resources/themes/omega/theme.css",
+    "../node_modules/font-awesome/css/font-awesome.min.css",
+    "../node_modules/primeng/resources/primeng.min.css"
+  ],
   "apps": [
     {
       "root": "src",
@@ -19,7 +25,9 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "my",
       "styles": [
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "styles.css"
+
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
