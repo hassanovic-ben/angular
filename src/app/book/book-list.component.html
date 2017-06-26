@@ -1,9 +1,11 @@
-<h2>My Heroes</h2>
+<h2>Books</h2>
 
 <ul class="books">
+  <button class="btn btn-primary" (click)="getBooks()">Get Books</button>
+  <div class="alert alert-danger" *ngIf="error">{{error}}</div>
   <li *ngFor="let book of books" (click)="onSelect(book)" [class.selected]="book === selectedBook">
     <span class="book-element">
-      <span class="badge">{{book.id}}</span> {{book.nameBook}}
+      <span class="badge">{{book.idBook}}</span> {{book.nameBook}}
     </span>
     <button class="delete-button" (click)="deleteBook(book, $event)">Delete</button>
   </li>
