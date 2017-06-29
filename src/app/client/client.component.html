@@ -1,13 +1,33 @@
-<h2>Clients</h2>
 
-<ul class="clients">
-  <li *ngFor="let client of clients" (click)="onSelect(client)" [class.selected]="client === selectedClient">
-    <span class="client-element">
-      <span class="badge">{{client.id}}</span> {{client.name}}
-    </span>
-    <button class="delete-button" (click)="deleteClient(client, $event)">Delete</button>
-  </li>
-</ul>
+<div class="container">
+  <div class="row col-xs-10 col-xs-offset-1">
+    <admin-space></admin-space>
+    <div class="clients">
 
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>User Name</th>
+          <th>Address</th>
+          <th>Email</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let client of clients">
+        <tr>
+          <td>{{client.name}}</td>
+          <td>{{client.userName}}</td>
+          <td>{{client.address}}</td>
+          <td>{{client.email}}</td>
+          <td><button class="btn btn-primary" value="Update">Update </button> </td>
+          <td><button class="btn btn-danger" value="Delete" (click)="deleteClient(client, $event)">Delete </button> </td>
+        </tr>
 
+        </tbody>
+      </table>
+
+    </div>
+  </div>
 

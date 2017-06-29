@@ -1,10 +1,11 @@
 
-export class User {
+export class Admin {
 
-  id:number;
+  idUser:number;
   name:string;
   userName:string;
   password:string;
   type:string;
+
 
 }

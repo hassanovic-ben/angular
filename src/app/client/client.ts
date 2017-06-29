@@ -2,7 +2,7 @@
 
 export class Client {
 
-  id:number;
+  idUser:number;
   name:string;
   userName:string;
   password:string;

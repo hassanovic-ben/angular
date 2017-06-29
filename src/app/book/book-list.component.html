@@ -1,58 +1,39 @@
-<h2>Books</h2>
 
-<ul class="books">
-  <button class="btn btn-primary" (click)="getBooks()">Get Books</button>
-  <div class="alert alert-danger" *ngIf="error">{{error}}</div>
-  <li *ngFor="let book of books" (click)="onSelect(book)" [class.selected]="book === selectedBook">
-    <span class="book-element">
-      <span class="badge">{{book.idBook}}</span> {{book.nameBook}}
-    </span>
-    <button class="delete-button" (click)="deleteBook(book, $event)">Delete</button>
-  </li>
-</ul>
+
+<div class="container">
+  <div class="row col-xs-10 col-xs-offset-1">
+    <admin-space></admin-space>
+
+<div >
 
 
 
-
-<!--
-
-<div class='panel panel-primary'>
-    <div class='panel-heading'>
-        {{bookTitle}}
-    </div>
-
-    <div class='panel-body'>
-
-        <div class='table-responsive' *ngIf= 'books && books.length'>
-            <table class='table'>
-                <thead>
-                   <tr>
-
-                       <th> Name Book </th>
-                       <th> Price </th>
-                       <th> Quantity </th>
-                       <th> Status </th>
-                   </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let book of books">
-
-                    <td>{{book.nameBook}}</td>
-                    <td>{{book.price}}</td>
-                    <td>{{book.quantity}}</td>
-                    <td>{{book.status}}</td>
-                </tr>
-
-                </tbody>
-
-
-            </table>
-
-
-
-        </div>
-
-    </div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name Book</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Pages</th>
+      <th>Update</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let book of books">
+    <tr>
+      <td>{{book.nameBook}}</td>
+      <td>{{book.price}}</td>
+      <td>{{book.quantity}}</td>
+      <td><button class="btn btn-default" value="Pages">Pages </button> </td>
+      <td><button class="btn btn-primary" value="Update">Update </button> </td>
+      <td><button class="btn btn-danger" value="Delete" (click)="deleteBook(book, $event)">Delete</button> </td>
+    </tr>
+    </tbody>
+  </table>
 
 </div>
--->
+
+  </div>
+</div>
+
+

@@ -1,4 +1,4 @@
-import {Component, OnInit, Output} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import { Router } from '@angular/router';
 import { Book } from './book';
 
@@ -7,14 +7,15 @@ import {Response} from "@angular/http";
 
 
 @Component({
-    selector:'my-books',
+    selector:'app-books',
     templateUrl:'./book-list.component.html',
 })
+
 
 export class BookComponent implements OnInit{
 
 
-  books: Book[]= Array();
+  books: Book[];
   selectedBook: Book;
   addingBook = false;
   error: any;
@@ -26,8 +27,11 @@ export class BookComponent implements OnInit{
 
 
   getBooks(): void {
-    this.bookService.getBooks()
-      .subscribe(books=>this.books=books)
+    this.bookService
+      .getBooks()
+      .then(books => this.books = books)
+      .catch(error => this.error = error);
+
   }
 
   addBook(): void {
@@ -41,13 +45,17 @@ export class BookComponent implements OnInit{
   }
 
   deleteBook(book: Book, event: any): void {
-    this.bookService.delete(book)
-      .subscribe(res => this.books = this.books.filter(b => b !== book),error=> this.error=this.handleErrors(error))
-
+    event.stopPropagation();
+    this.bookService
+      .delete(book)
+      .then(res => {
+        this.books = this.books.filter(b => b !== book);
+        if (this.selectedBook === book) { this.selectedBook = null; }
+      })
+      .catch(error => this.error = error);
   }
-
   ngOnInit(): void {
-    //this.getBooks();
+    this.getBooks();
   }
 
   onSelect(book: Book): void {

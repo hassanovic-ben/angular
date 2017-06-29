@@ -1,8 +1,9 @@
-import {Component, OnInit, Output} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import { Router } from '@angular/router';
 import { Client } from './client';
 
 import { ClientService } from './client.service';
+import {UserService} from "../admin/admin.service";
 
 
 @Component({
@@ -21,21 +22,17 @@ export class ClientComponent implements OnInit{
 
   constructor(
     private router: Router,
-    private clientService: ClientService) { }
+    private clientService: ClientService
+  ) { }
 
 
   getClients(): void {
-    /*
-     this.bookService
-     .getBooks().then(b=> {
-     console.log(b)
-     })
-     .catch(error => this.error = error);
-     */
-    this.clientService.getClients().subscribe(c => {
-      let items = c.json() as Client[];
-      this.clients= items
-    })
+
+    this.clientService
+
+      .getClients()
+      .then(clients => this.clients = clients)
+      .catch(error => this.error = error);
 
   }
 

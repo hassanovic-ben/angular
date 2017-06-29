@@ -2,8 +2,6 @@ import {Injectable} from "@angular/core";
 
 import {Http,Response,Headers} from "@angular/http";
 
-import {Observable} from "rxjs";
-
 import { Client } from './client';
 
 import 'rxjs/add/operator/toPromise';
@@ -25,15 +23,19 @@ export class ClientService {
 
    } */
 
-  private clientUrl = 'http://localhost:8080/bookstore/admin/show-users';  // URL to web api
+  private clientUrl = 'http://localhost:8080/bookstore';  // URL to web api
 
 
   constructor(private http: Http) { }
 
   getClients() {
     return this.http
-      .get(this.clientUrl)
-      ;
+      .get(this.clientUrl+"/admin/getClient")
+      .toPromise()
+      .then((response) => {
+        return response.json() as Client[];
+      })
+      .catch(this.handleError);
   }
 
 
@@ -46,9 +48,6 @@ export class ClientService {
   }
 
   save(client: Client): Promise<Client> {
-    if (client.id) {
-      return this.put(client);
-    }
     return this.post(client);
   }
 
@@ -56,7 +55,7 @@ export class ClientService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    const url = `${this.clientUrl}/${client.id}`;
+    const url = `${this.clientUrl}/admin/delete-user/${client.idUser}`;
 
     return this.http
       .delete(url, { headers: headers })
@@ -70,9 +69,9 @@ export class ClientService {
     });
 
     return this.http
-      .post(this.clientUrl, JSON.stringify(client), {headers: headers })
+      .post(this.clientUrl+"/admin/create-client", JSON.stringify(client), {headers: headers })
       .toPromise()
-      .then(res => res.json().data)
+      .then(res => res.json())
       .catch(this.handleError);
   }
 
@@ -81,7 +80,7 @@ export class ClientService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    const url = `${this.clientUrl}/${client.id}`;
+    const url = `${this.clientUrl}/${client.idUser}`;
 
     return this.http
       .put(url, JSON.stringify(client), { headers: headers })

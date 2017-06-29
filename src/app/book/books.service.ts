@@ -2,8 +2,6 @@ import {Injectable} from "@angular/core";
 
 import {Http,Response,Headers} from "@angular/http";
 
-  import {Observable} from "rxjs";
-
 import { Book } from './book';
 
 
@@ -14,73 +12,66 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class BookService {
 
-   /* private _bookUrl = 'http://localhost:8080/bookstore/admin/show-all-books';
-
-     constructor(private _http: Http){}
-
-     getBooks() : Observable<IBook[]>{
-        return this._http.get(this._bookUrl)
-               .map((response:Response)=> <IBook[]>response.json());
-    }
-
-     private handleError(error:Response){
-
-    } */
 
   private booksUrl = 'http://localhost:8080/bookstore';  // URL to web api
 
   constructor(private http: Http) { }
 
-  getBooks() : Observable<Book[]>{
-  /*  return this.http
-      .get(this.booksUrl)
-      .map(response => response.json() as Book[])
+  getBooks() :Promise<Book[]> {
+    return this.http
+      .get(this.booksUrl+"/admin/show-books")
       .toPromise()
+      .then((response) => {
+        return response.json() as Book[];
+      })
       .catch(this.handleError);
-  */
-     return this.http
-     .get(this.booksUrl + "/admin/show-all-books")
-     //.map(response => response.json() as Book[])
-       .map((response:Response)=> response.json())
-    ;
   }
 
 
+  getAvailableBooks() :Promise<Array<Book>> {
+    return this.http
+      .get(this.booksUrl+"/book/available-book")
+      .toPromise()
+      .then((response) => {
+        return response.json() as Book[];
+      })
+      .catch(this.handleError);
+  }
 
   getBook(id: number): Promise<Book> {
-   /* return this.getBooks()
-      .then(books => books.find(book => book.id === id));
-  */
-    return null;
+    return this.getBooks()
+      .then(books => books.find(book => book.idBook === id));
+
   }
 
   save(book: Book): Promise<Book> {
-    if (book.idBook) {
-      return this.put(book)
-    }
     return this.post(book)
   }
 
-  delete(book: Book): Observable<Response> {
+  delete(book: Book): Promise<Response> {
     const headers = new Headers();
-    // headers.append('Content-Type', 'application/json');
+    headers.append('Content-Type', 'application/json');
 
-    let url = `${this.booksUrl}/admin/book/delete/${book.idBook}`;
+    const url = `${this.booksUrl}/admin/book/delete/${book.idBook}`;
 
     return this.http
-      .delete(url)
+      .delete(url, { headers: headers })
+      .toPromise()
+      .catch(this.handleError);
   }
+  //buyBook(book:Book):
 
-  // Add new Hero
+  // Add new Book
   private post(book: Book): Promise<Book> {
     const headers = new Headers({
       'Content-Type': 'application/json'
     });
-
+    console.log(book.nameBook)
+      console.log(this.booksUrl+"/admin/create-book")
     return this.http
-      .post(this.booksUrl, JSON.stringify(book), {headers: headers })
+      .post(this.booksUrl+"/admin/create-book", JSON.stringify(book), {headers: headers })
       .toPromise()
-      .then(res => res.json().data)
+      .then(res => res.json())
       .catch(this.handleError);
   }
 
