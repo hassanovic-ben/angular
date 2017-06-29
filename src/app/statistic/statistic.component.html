@@ -1,0 +1,19 @@
+<div class="container" >
+<div >
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+      <label class="label label-default"> Best Client : =>   </label> {{best.name}} <br>
+      <label class="label label-default"> Best Book Bought : => </label> {{bestBook.nameBook}} <br>
+      <label class="label label-default"> Total Book Sold : => </label> {{totalBookSold}} <br>
+      <label class="label label-default"> Top Five Title : => </label>
+        <div *ngFor="let page of topTitle"><br>
+          <p>{{page}}</p>
+        </div>
+
+      <br>
+
+    </div>
+  </div>
+</div>
+</div>

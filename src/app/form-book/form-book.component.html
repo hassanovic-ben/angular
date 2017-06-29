@@ -1,0 +1,49 @@
+<div *ngIf="book">
+<div class="container">
+  <div class="row col-xs-10 col-xs-offset-1">
+    <admin-space></admin-space>
+
+
+      <form class="well form-horizontal">
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label">Book Name</label>
+            <div class="col-md-4 inputGroupContainer">
+              <div class="input-group">
+                <input [(ngModel)]="book.nameBook" [ngModelOptions]="{standalone: true}"
+                       placeholder="Book Name" class="form-control" type="text">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Price</label>
+            <div class="col-md-4 inputGroupContainer">
+              <div class="input-group">
+                <input [(ngModel)]="book.price" [ngModelOptions]="{standalone: true}"
+                       placeholder="Price" class="form-control" type="text">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Quantity</label>
+            <div class="col-md-4 inputGroupContainer">
+              <div class="input-group">
+                <input [(ngModel)]="book.quantity" [ngModelOptions]="{standalone: true}"
+                       placeholder="Quantity" class="form-control" type="text">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label"></label>
+            <div class="col-md-4">
+              <button (click)="save()" class="btn btn-warning">
+                Register <span class="glyphicon glyphicon-send"></span>
+              </button>
+            </div>
+          </div>
+
+      </form>
+    </div>
+</div>
+</div>

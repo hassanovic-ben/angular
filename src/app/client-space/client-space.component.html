@@ -1,0 +1,89 @@
+
+<div class="container">
+  <div class="row">
+<div>
+  <nav class='navbar navbar-default'>
+    <div class='container-fluid'>
+
+      <ul class='nav navbar-nav'>
+
+        <li><button class="btn btn-primary" (click)="goOut()" value="Log out" >Log Out </button></li>
+      </ul>
+    </div>
+  </nav>
+  <form class="well form-horizontal" >
+    <fieldset>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label">Name Book</label>
+        <div class="col-md-3 " selectContainer>
+          <div class="input-group" >
+
+            <select name="bookName" class="form-control">
+
+              <option  value="{{book.nameBook}}" *ngFor="let book of books">{{book.nameBook}}</option>
+
+            </select>
+          </div>
+        </div>
+        <label class="col-md-2 control-label">Shipping Method</label>
+        <div class="col-md-3 selectContainer">
+          <div class="input-group">
+
+            <select [(ngModel)]="shipping" class="form-control selectpicker" >
+
+              <option value="BY_POST">BY_POST</option>
+              <option value="COME_HIME_SELF">COME_HIME_SELF</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">Address</label>
+        <div class="col-md-3 inputGroupContainer">
+          <div class="input-group">
+            <input [(ngModel)]="address" [ngModelOptions]="{standalone: true}"
+                   placeholder="Address" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label"></label>
+        <div class="col-md-3">
+          <button class="btn btn-warning" (click)="buy()" >
+            Buy <span class="glyphicon glyphicon-send"></span>
+          </button>
+        </div>
+      </div>
+
+    </fieldset>
+  </form>
+
+  <!--
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Name Book</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Method</th>
+        <th>Buy</th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let book of books">
+      <tr>
+        <td>{{book.nameBook}}</td>
+        <td>{{book.price}}</td>
+        <td>{{book.quantity}}</td>
+        <td><input type="radio" name="method" value="BY_POST" />BY_POST
+          <input type="radio" name="method" value="COME_HIME_SELF" />COME_HIME_SELF</td>
+        <td><button class="btn btn-danger" value="Delete" (click)="deleteBook(book, $event)">BUY</button> </td>
+      </tr>
+      </tbody>
+    </table>-->
+
+
+</div>
+  </div></div>

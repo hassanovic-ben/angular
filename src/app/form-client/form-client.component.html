@@ -1,0 +1,67 @@
+
+<div class="container">
+  <div class="row col-xs-10 col-xs-offset-1">
+    <admin-space></admin-space>
+
+    <form class="well form-horizontal">
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Name</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <input [(ngModel)]="client.name" [ngModelOptions]="{standalone: true}"
+                   placeholder="Name" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">User Name</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <input [(ngModel)]="client.userName" [ngModelOptions]="{standalone: true}"
+                   placeholder="User Name" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Password</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <input [(ngModel)]="client.password" [ngModelOptions]="{standalone: true}"
+                   placeholder="Password" class="form-control" type="password">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Email</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <input [(ngModel)]="client.email" [ngModelOptions]="{standalone: true}"
+                   placeholder="Email" class="form-control" type="email">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label">Address</label>
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <input [(ngModel)]="client.address" [ngModelOptions]="{standalone: true}"
+                   placeholder="Address" class="form-control" type="address">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-4">
+          <button (click)="save()"  class="btn btn-warning">
+            Register <span class="glyphicon glyphicon-send"></span>
+          </button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+</div>
